@@ -27,7 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend'
+    '##############'
 ]
 
 AUTH_USER_MODEL = 'user.User'
@@ -85,8 +85,8 @@ DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'NAME': 'documentordb',
-    'USER': 'core_user',
-        'PASSWORD': '111000111',
+    'USER': '########',
+        'PASSWORD': '########',
     'HOST': 'localhost',
     'PORT': '5433',
  }
