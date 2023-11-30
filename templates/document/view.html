@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ document.name }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+ <div class="container">
+    <h4>{{ document.name }}</h4>
+    <p>Час створення: {{ document.created }}</p>
+    <p>Вміст документа:</p>
+    <pre>{{ document.content|safe }}</pre>
+    <hr>
+ </div>
+ <div class="container">
+  <form method="post" action="{% url 'create_comment'  document_id=document.id %}">
+      {% csrf_token %}
+    <div class="mb-3">
+    </div>
+    <div class="mb-3">
+      <label for="comment" class="form-label">Додати коментар</label>
+      <textarea class="form-control" id="comment" rows="3" name="content" placeholder="Введіть ваш коментар"></textarea>
+        <input type="hidden" name="document_id" value="{{ document.id }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Додати коментар</button>
+  </form>
+</div>
+
+    <br>
+
+    <div class="container">
+        {% for comment in comments %}
+            <div class="card p-4">
+  <div class="card-header">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h5 class="mb-0">{{ comment.user.first_name }} {{ comment.user.last_name }}</h5>
+        <small class="text-muted">{{ comment.created }}</small>
+      </div>
+      <a href="#" class="btn btn-link btn-sm text-muted">
+        <i class="fas fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{ comment.content }}</p>
+  </div>
+  <div class="card-footer text-muted">
+    <a href="#" class="card-link"><i class="fas fa-thumbs-up"></i> Подобається </a>
+    <a href="#" class="card-link"><i class="fas fa-comment"></i> Відповісти </a>
+  </div>
+</div>
+        <br>
+        {% endfor %}
+</div>
+
+
+
+
+
+
+</body>
+</html>

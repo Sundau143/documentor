@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea.tinymce',
+    plugins: 'link image code',
+    toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
+    menubar: false,
+  });
+</script>
+
+</head>
+<body>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Створити документ</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Назва</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="col-md-6">
+                    <label for="group" class="form-label">Група</label>
+                    <input type="text" class="form-control" id="group" name="group">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content" class="form-label">Зміст</label>
+                <textarea name="content" class="form-control tinymce" id="content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Зберегти</button>
+        </form>
+    </div>
+</body>

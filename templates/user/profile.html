@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<section class="vh-100" style="background-color: #f4f5f7;">
+  <div class="container-fluid py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-black"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img src="https://cdn-icons-png.flaticon.com/512/2919/2919906.png"
+                alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+              <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+              <p>{{ user.role }}</p>
+              <i class="far fa-edit mb-5"></i>
+              <button type="button" class="btn btn-primary" onclick="window.location.href='/profile/edit'">Редагувати</button>
+              <p><a href="/document">Всі документи</a></p>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Інформація</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Email</h6>
+                    <p class="text-muted">{{ user.username }}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Телефон</h6>
+                    <p class="text-muted">{{ user.phone_number }}9</p>
+                  </div>
+                </div>
+                <h6>Документи</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Останній</h6>
+                    <p class="text-muted">Lorem ipsum</p>
+                  </div>
+                  <div class="col-6 mb-4">
+                    <h6>Всього створено</h6>
+                    <p class="text-muted">1</p>
+                  </div>
+                </div>
+               <h6>Дати</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Реєстрація</h6>
+                    <p class="text-muted">{{ user.date_joined|date:"Y-m-d H:i:s" }}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Останні зміни</h6>
+                    <p class="text-muted">{{ user.date_updated|date:"Y-m-d H:i:s" }}</p></p>
+                  </div>
+                </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                  <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                  <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                  <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

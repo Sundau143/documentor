@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Список всіх документів</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Назва документу</th>
+                    <th>Дата створення</th>
+                    <th>Редагувати</th>
+                    <th>Видалити</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for document in document_list %}
+                    <tr>
+                        <td><a href="{{ document.id }}/">{{ document.name }}</a></td>
+                        <td>{{ document.created|date:"Y-m-d H:i:s" }}</td>
+                        <td>
+                            <form method="get" action="{% url 'edit_document' document.id %}">
+                                <button type="submit" class="btn btn-outline-primary">✏️</button>
+                            </form>
+                        <td>
+                        <form method="post" action="{% url 'remove_document' document.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="document_id" value="{{ document.id }}">
+                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Ви впевнені, що хочете видалити цей документ??')">❌</button>
+                        </td>
+                   </form>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary mt-4" href="/document/create/">Створити новий документ</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
